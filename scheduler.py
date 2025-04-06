@@ -1,4 +1,4 @@
-# v3-cloud/scheduler.py
+# scheduler.py
 # Determine which problems are due for review today based on spaced repetition schedule
 
 from datetime import datetime, timedelta

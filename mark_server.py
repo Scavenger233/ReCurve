@@ -1,4 +1,4 @@
-# v3-cloud/mark_server.py
+# mark_server.py
 # Simple Flask server to handle 'mark as reviewed' clicks
 
 from flask import Flask, request, jsonify, render_template_string
@@ -8,7 +8,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-REVIEW_LOG = "v3-cloud/review_log.csv"
+REVIEW_LOG = "review_log.csv"
 
 def log_review(email, problem, round_num):
     os.makedirs(os.path.dirname(REVIEW_LOG), exist_ok=True)

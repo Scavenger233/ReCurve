@@ -37,7 +37,7 @@ def fetch_sheet_data(sheet_id):
         print("❌ Exception during sheet fetch:\n" + traceback.format_exc())
         return []
 
-def fetch_all_users_data(registry_file="v3-cloud/user_registry.csv"):
+def fetch_all_users_data(registry_file="user_registry.csv"):
     """
     For each user listed in user_registry.csv, fetch their problem entries
     """

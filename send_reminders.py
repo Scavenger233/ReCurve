@@ -1,4 +1,4 @@
-# v3-cloud/send_reminders.py
+# send_reminders.py
 # Send email reminders to users for problems due today
 
 import os
@@ -7,6 +7,9 @@ from email.message import EmailMessage
 from dotenv import load_dotenv
 from scheduler import compute_next_review_dates
 from sheet_fetch import fetch_all_users_data
+
+
+print("🔥 ReCurve Reminder Service is running on Railway")
 
 load_dotenv(dotenv_path="config/config.env")
 
@@ -35,7 +38,9 @@ It's time to review: {problem} (Round {round_num})
 🔗 {url}
 
 Once you finish, click this link to mark as reviewed:
-[Mark Completed](http://yourdomain.com/mark?problem={problem}&round={round_num})
+[Mark Completed](https://recurve.up.railway.app/mark?problem={problem}&round={round_num})
+
+📊 View your full dashboard here: https://recurve.up.railway.app/dashboard/user@example.com
 
 - ReCurve Team
 """

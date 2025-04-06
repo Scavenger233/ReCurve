@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ReCurve Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .mark-btn {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧠 ReCurve Review Tasks for {{ email }}</h1>
+
+    {% if tasks %}
+        <table>
+            <tr>
+                <th>Problem</th>
+                <th>Round</th>
+                <th>Link</th>
+                <th>Mark</th>
+            </tr>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task['Problem'] }}</td>
+                <td>{{ task['Round'] }}</td>
+                <td><a href="{{ task['URL'] }}" target="_blank">Open</a></td>
+                <td>
+                    <a class="mark-btn" href="https://recurve.up.railway.app/mark_reviewed?email={{ email }}&problem={{ task['Problem'] }}&round={{ task['Round'] }}">Mark Done</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>🎉 No review tasks today. Enjoy your free time!</p>
+    {% endif %}
+</body>
+</html>
