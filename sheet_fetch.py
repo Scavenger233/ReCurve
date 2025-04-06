@@ -1,26 +1,25 @@
-# v3-cloud/sheet_fetch.py
+# sheet_fetch.py
 # Fetch simplified user logs from individual Google Sheets using service account credentials
 
 import os
 import pandas as pd
 import gspread
+import json
+from google.oauth2.service_account import Credentials
 from dotenv import load_dotenv
 from pathlib import Path
 
 load_dotenv(dotenv_path="config/config.env")
-
-SERVICE_ACCOUNT_FILE = str(Path(__file__).resolve().parent / "google_service_account.json")
 
 def fetch_sheet_data(sheet_id):
     """
     Given a sheet ID, return a list of problem logs as dicts
     """
     try:
-        gc = gspread.service_account(filename=SERVICE_ACCOUNT_FILE)
-        print("✅ Connected to gspread service account")
+        creds_info = json.loads(os.getenv("GOOGLE_SERVICE_ACCOUNT_JSON"))
+        creds = Credentials.from_service_account_info(creds_info)
+        gc = gspread.authorize(creds)
         sh = gc.open_by_key(sheet_id)
-        print("📄 Sheet title:", sh.title)
-        print("🔗 Sheet URL: https://docs.google.com/spreadsheets/d/" + sheet_id)
         worksheet = sh.worksheet("Sheet1")
 
         all_values = worksheet.get_all_values()
