@@ -40,7 +40,7 @@ It's time to review: {problem} (Round {round_num})
 Once you finish, click this link to mark as reviewed:
 [Mark Completed](https://recurve.up.railway.app/mark?problem={problem}&round={round_num})
 
-📊 View your full dashboard here: https://recurve.up.railway.app/dashboard/user@example.com
+📊 View your full dashboard here: View your full dashboard here: https://recurve.up.railway.app/dashboard?email={{ email }}
 
 - ReCurve Team
 """
