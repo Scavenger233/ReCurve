@@ -29,7 +29,7 @@ def send_email(to, subject, body):
         smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
         smtp.send_message(msg)
 
-def format_email(problem, url, round_num):
+def format_email(problem, url, round_num, email):
     return f"""
 Hi there 👋
 
@@ -38,9 +38,10 @@ It's time to review: {problem} (Round {round_num})
 🔗 {url}
 
 Once you finish, click this link to mark as reviewed:
-[Mark Completed](https://recurve.up.railway.app/mark?problem={problem}&round={round_num})
+✅ https://recurve.up.railway.app/mark_reviewed?email={email}&problem={problem}&round={round_num}
 
-📊 View your full dashboard here: View your full dashboard here: https://recurve.up.railway.app/dashboard?email={{ email }}
+📊 View your full dashboard here:
+https://recurve.up.railway.app/dashboard?email={email}
 
 - ReCurve Team
 """
@@ -55,6 +56,6 @@ if __name__ == "__main__":
         problem = task["Problem"]
         url = task["URL"]
         round_num = task["Round"]
-        body = format_email(problem, url, round_num)
+        body = format_email(problem, url, round_num, email)
         send_email(email, f"ReCurve ⏰ Review {problem} (Round {round_num})", body)
         print(f"✅ Sent: {problem} (Round {round_num}) to {email}")
