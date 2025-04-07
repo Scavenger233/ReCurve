@@ -17,7 +17,8 @@ def fetch_sheet_data(sheet_id):
     """
     try:
         creds_info = json.loads(os.getenv("GOOGLE_SERVICE_ACCOUNT_JSON"))
-        creds = Credentials.from_service_account_info(creds_info)
+        scopes = ['https://www.googleapis.com/auth/spreadsheets.readonly']
+        creds = Credentials.from_service_account_info(creds_info, scopes=scopes)
         gc = gspread.authorize(creds)
         sh = gc.open_by_key(sheet_id)
         worksheet = sh.worksheet("Sheet1")
