@@ -1,1 +1,1 @@
-web: python mark_server.py
+python recurve_server.py
